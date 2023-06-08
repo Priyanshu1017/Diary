@@ -6,6 +6,6 @@
         "client-install": "cd client && npm install",
         "client-build": "cd client && npm run build",
         "server-install": "cd server && npm install",
-        "dev": "concurrently \"npm run start\" \"cd client && npm run start\""
+        "dev": "concurrently \"cd server && nodemon index.js\" \"cd client && npm run start\""
     }
 }
