@@ -1,0 +1,104 @@
+.formcontainer {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+    color: white;
+    background-color: #131324;
+    border-radius: 23px;
+}
+
+button {
+    background-color: #4e0eff;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0.4rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+
+    &:hover {
+        background-color: #4e0eff;
+    }
+}
+
+.Form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: #00000076;
+    border-radius: 2rem;
+    padding: 5rem;
+    border: 2px inset;
+
+}
+
+:hover {
+    animation: light 3s ease-in-out infinite;
+}
+
+@keyframes light {
+
+    0% {
+        color: #baa7e0;
+    }
+
+    40% {
+        color: #997af0;
+    }
+
+    80% {
+        color: #4e0eff;
+    }
+
+    100% {
+        color: #a495ca;
+    }
+}
+
+.card {
+    background-color: #00000076;
+    border-radius: 2rem;
+
+    border: 2px inset;
+    color: white;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+
+}
+
+.opr {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: relative;
+    top: 27px;
+    border: 2px outset;
+    border-radius: 3vw;
+    background: #241a1ac9;
+}
+
+.Formm {
+    display: flex;
+    
+    
+    border-radius: 2rem;
+    padding: 5rem;
+    flex-direction: row;
+}
+
+.Foorm {
+    position: relative;
+    left: 61vw;
+}
+@media screen and (max-width: 600px) {
+.Foorm {
+        left: 1px;
+    }
+}
+    
