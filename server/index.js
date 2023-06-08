@@ -1,10 +1,10 @@
 const connectDB=require('./db');
 const express = require('express')
 let cors =require('cors')
-const env=require('dotenv')
+const env=require('dotenv-extended')
 const path=require('path')
 
-env.config()
+env.load()
 
 connectDB();
 const app = express()
