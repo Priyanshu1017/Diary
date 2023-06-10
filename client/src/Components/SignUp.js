@@ -16,31 +16,24 @@ export default function SignUp(props) {
             body: JSON.stringify({ name: credentials.name, email: credentials.email, password: credentials.password })
         });
         const json = await response.json()
-
-        if (credentials.password !== credentials.cpassword) {
-            props.showAlert("Passwords do not match", "danger");
+        if(credentials.email===json.email){
+            window.location.reload(false);
+            props.showAlert("User already exists","danger")
+        }else if(credentials.password!==credentials.cpassword){
+            window.location.reload(false);
+            props.showAlert("Password doesn't match","danger")
+        }else{
+            localStorage.setItem('token', json.authtoken);
+            navigate('/about')
         }
-        else {
-
-            if (json.success) {
-                // Save the auth token and redirect
-                localStorage.setItem('token', json.authtoken);
-                navigate('/about');
-                props.showAlert("New Account Created", "Congratulations");
-
-            }
-            else {
-                props.showAlert("Invalid credentials", "danger");
-            }
-        }
+    
     }
-
     const onChange = (e) => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
 
     return (
-        <div className="formcontainer my-3" style={{ background: "url(https://source.unsplash.com/random/?signup)", backgroundPositionX: 'center' }} >
+        <div className="formcontainer my-3" style={{ background: "url(https://source.unsplash.com/random/?night)"}} >
             < h3>Sign Up to use Diary</h3>
             <form className='Form' onSubmit={handleSubmit}>
                 <div className="mb-3  row">
@@ -69,7 +62,7 @@ export default function SignUp(props) {
                 </div>
 
 
-                <button disabled={credentials.name.length < 1 || credentials.email.length < 1 || credentials.password.length < 5} type="submit" className="btn btn-outline-light" >Submit</button>
+                <button disabled={credentials.name.length < 1 || credentials.email.length < 1 || credentials.password.length < 3} type="submit" className="btn btn-outline-light" >Submit</button>
             </form>
         </div>
     )
