@@ -16,53 +16,38 @@ export default function SignUp(props) {
             body: JSON.stringify({ name: credentials.name, email: credentials.email, password: credentials.password })
         });
         const json = await response.json()
-        if(credentials.email===json.email){
-            props.showAlert("User already exists","danger")
+        if (credentials.email === json.email) {
+            props.showAlert("User already exists", "danger")
             window.scrollTo(0, 0);
             setTimeout(() => {
                 window.location.reload(false);
             }, 3000);
-        }else if(credentials.password!==credentials.cpassword){
-            
-            props.showAlert("Password doesn't match","danger")
+        } else if (credentials.password !== credentials.cpassword) {
+
+            props.showAlert("Password doesn't match", "danger")
+            document.getElementById('cpassword').style.cssText = "border: 4px solid red";
+            document.getElementById('password').style.cssText = "border: 4px solid red";
             window.scrollTo(0, 0);
             setTimeout(() => {
                 window.location.reload(false);
             }, 3000);
-        }else{
+        } else {
+            document.getElementById('cpassword').style.cssText = "border: 4px solid green";
+            document.getElementById('password').style.cssText = "border: 4px solid green";
             localStorage.setItem('token', json.authtoken);
             navigate('/')
         }
-    
+
     }
-    
+
 
     const onChange = (e) => {
         e.preventDefault();
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
-        if (credentials.password.length < 3) {
-            document.getElementById('password').style.border = "2px solid yellow"
-        } else {
-            document.getElementById('password').style.border = "2px solid green"
-        }
-        if (credentials.cpassword.length < 3) {
-            document.getElementById('cpassword').style.border = "2px solid yellow"
-        } else {
-            document.getElementById('cpassword').style.border = "2px solid green"
-        }
-        if (credentials.password !== credentials.cpassword && credentials.cpassword.length > 1) {
-            
-         
-            document.getElementById('cpassword').style.cssText ="background:red ;opacity:0.5; text-decoration: line-through; font-weight: bold";
-            document.getElementById('password').style.cssText="background:red ;opacity:0.5; text-decoration: line-through; font-weight: bold";
-        }
-        else {
-            document.getElementById('cpassword').style.cssText = "background:green ;opacity:0.5; text-decoration: line-through; font-weight: bold";
-            document.getElementById('cpassword').style.cssText = "background:green ;opacity:0.5; text-decoration: line-through; font-weight: bold";
-    }}
+    }
 
     return (
-        <div className="signupcontainer my-3" style={{ background: "url(https://source.unsplash.com/random/?night)"}} >
+        <div className="signupcontainer my-3" style={{ background: "url(https://source.unsplash.com/random/?night)" }} >
             < h3>Sign Up to use Diary</h3>
             <form className='Form' onSubmit={handleSubmit}>
                 <div className="mb-3  row">
@@ -81,7 +66,7 @@ export default function SignUp(props) {
                     <label htmlFor="inputPassword" className="col-sm-3 col-form-label">Password</label>
                     <div className="col-sm-7">
                         <input type="password" className="form-control" value={credentials.password} onChange={onChange} name="password" id="password" />
-                        
+
                         <p>Password should be of more than 5 characters</p>
                     </div>
                 </div>
