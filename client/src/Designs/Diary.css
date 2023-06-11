@@ -39,19 +39,9 @@ h3 {
      cursor: pointer;
  }
 
- .eye-opened {
-     color: #aa4e4e;
-     /* Change color to suit your design */
- }
 
- @media screen and (max-width:600px) {
-     #eye-icon {
-         position: absolute;
-         top: 58vh;
-         right: 13vw;
-         cursor: pointer;
-     }
- }
+
+ 
 input {
     background-color: transparent;
     padding: 1rem;
