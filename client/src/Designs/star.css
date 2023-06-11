@@ -1,5 +1,5 @@
-.formcontainer {
-    height: 100vh;
+.signupcontainer {
+    height: 120vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -101,4 +101,28 @@ button {
         left: 1px;
     }
 }
+.zororun{
     
+    position: relative;
+    left: 61vw;
+    animation: run 5s linear  ;
+    animation-iteration-count: 1;
+    opacity: 0;
+    
+}    
+@keyframes run {
+    from{
+        left: 61vw;
+        opacity: 0;
+
+    }
+    to{
+        left: 0;
+        opacity: 1;
+    }
+}
+@media screen and (max-width: 600px) {
+    .zororun {
+       display: none;
+    }
+}

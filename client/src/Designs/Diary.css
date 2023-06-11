@@ -13,20 +13,7 @@
     border-radius: 23px;
 }
 
-input {
-    background-color: transparent;
-    padding: 1rem;
-    border: 0.1rem solid #4e0eff;
-    border-radius: 0.4rem;
-    color: white;
-    width: 100%;
-    font-size: 1rem;
 
-    &:focus {
-        border: 0.1rem solid #997af0;
-        outline: none;
-    }
-}
 
 h3 {
     color: white;
@@ -41,8 +28,47 @@ h3 {
     background-color: #00000076;
     border-radius: 2rem;
     padding: 5rem;
+
+
+
+   
+}
+ #eye-icon {
+     display: flex;
+     flex-direction: row-reverse;
+     cursor: pointer;
+ }
+
+ .eye-opened {
+     color: #aa4e4e;
+     /* Change color to suit your design */
+ }
+
+ @media screen and (max-width:600px) {
+     #eye-icon {
+         position: absolute;
+         top: 58vh;
+         right: 13vw;
+         cursor: pointer;
+     }
+ }
+input {
+    background-color: transparent;
+    padding: 1rem;
+    border: 0.1rem solid #4e0eff;
+    border-radius: 0.4rem;
+    color: white;
+    width: 100%;
+    font-size: 1rem;
+
+
 }
 
+&:focus {
+    outline: none;
+    border: 0.1rem solid #4e0eff;
+    border-radius: 0.4rem;
+}
 
 
 
@@ -61,5 +87,3 @@ button {
         background-color: #4e0eff;
     }
 }
-
-

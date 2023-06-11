@@ -3,7 +3,7 @@ import noteContext from '../Context/notes/noteContext';
 import Noteitem from './Noteitem';
 import AddNote from './AddNote';
 import { useNavigate } from 'react-router-dom';
-import './star.css'
+import '../Designs/star.css'
 export default function Notes(props) {
   const navigate = useNavigate()
   const context = useContext(noteContext)

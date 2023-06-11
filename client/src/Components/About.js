@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef } from 'react'
 import Noteitem from './Noteitem';
 import noteContext from '../Context/notes/noteContext';
 import { useNavigate } from 'react-router-dom';
-import './star.css'
+import '../Designs/star.css'
 export default function About(props) {
 
   const navigate = useNavigate()

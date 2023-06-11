@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate ,Link} from 'react-router-dom'
-import './Diary.css'
+import '../Designs/Diary.css'
 export default function Login(props) {
     const [credentials, setCredentials] = useState({ email: "", password: "" })
     const navigate = useNavigate();
@@ -31,7 +31,25 @@ export default function Login(props) {
     const onChange = (e) => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
+   
+    function togglePasswordVisibility(e) {
+        e.preventDefault();
+        let passwordInput = document.getElementById('password');
+        let eyeIcon = document.getElementById('eye-icon');
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            eyeIcon.classList.remove('fa-eye-slash');
+            eyeIcon.classList.add('fa-eye');
+            eyeIcon.classList.add('eye-opened');
+        } else {
+            passwordInput.type = 'password';
+            eyeIcon.classList.remove('fa-eye');
+            eyeIcon.classList.add('fa-eye-slash');
+            eyeIcon.classList.remove('eye-opened');
+        }
     
+    }
 
     return (
         <div className='formcontainer' style={{ background: "url(https://source.unsplash.com/random/?dawn)", backgroundPositionX: 'center' }} >
@@ -47,6 +65,7 @@ export default function Login(props) {
                     <label htmlFor="inputPassword" className="col-sm-4 col-form-label">Password</label>
                     <div className=".input">
                         <input type="password" className="form-control" value={credentials.password} onChange={onChange} name="password" id="password" />
+                        <span id="eye-icon" className="fas fa-eye-slash" onClick={togglePasswordVisibility}></span>
                     </div>
                 </div>
 

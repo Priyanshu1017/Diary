@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import noteContext from '../Context/notes/noteContext';
-import'./star.css'
+import '../Designs/star.css'
 export default function Noteitem(props) {
     const context = useContext(noteContext)
     const { note, updateNote } = props;
