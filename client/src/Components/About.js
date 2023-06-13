@@ -29,7 +29,7 @@ export default function About(props) {
   }
   const handleClick = (e) => {
     e.preventDefault();
-    console.log(note)
+    // console.log(note)
     editNote(note.id, note.etitle, note.edescription, note.etag)
     refclsoe.current.click()
     setNote({ title: "", description: "", tag: "" })

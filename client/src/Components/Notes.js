@@ -12,7 +12,7 @@ export default function Notes(props) {
 
 
 
-  console.log("useeffect of notes")
+  useEffect(() => {
   try {
     if (localStorage.getItem('token')) {
 
@@ -24,7 +24,7 @@ export default function Notes(props) {
   } catch (e) {
     console.log(e)
   }
-
+  }, [])
 
   const ref = useRef(null)
   const refclsoe = useRef(null)
@@ -35,7 +35,7 @@ export default function Notes(props) {
   }
   const handleClick = (e) => {
     e.preventDefault();
-    console.log(note)
+    // console.log(note)
     editNote(note.id, note.etitle, note.edescription, note.etag)
     refclsoe.current.click()
     setNote({ title: "", description: "", tag: "" })

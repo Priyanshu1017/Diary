@@ -32,8 +32,8 @@ router.post('/addnote',fetchuser,[
             const note=new Notes({
                 title,description,tag,user:req.user.id
             })
-            await note.save();
-            res.statusCode(200);
+            const savedNote = await note.save();
+            res.status(200).json(savedNote)
         }catch(error){
             console.error(error.message);
             res.status(500).send("Some error occured");
@@ -60,7 +60,7 @@ router.post('/addnote',fetchuser,[
                 return res.status(401).send("Not allowed");
             }
             note=await Notes.findByIdAndUpdate(req.params.id,{$set:newNote},{new:true});
-            res.json({note});
+            res.status(200).send(note);  
         }catch(error){
             console.error(error.message);
             res.status(500).send("Some error occured");
@@ -78,7 +78,8 @@ router.delete('/deletenote/:id',fetchuser,async(req,res)=>{
             return res.status(401).send("Not allowed");
         }
         await Notes.findByIdAndDelete(req.params.id);
-        res.statusCode(200);
+        res.status(200);
+
     }catch(error){
         console.error(error.message);
         res.status(500).send("Some error occured");

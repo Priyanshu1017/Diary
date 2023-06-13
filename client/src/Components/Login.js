@@ -15,7 +15,7 @@ export default function Login(props) {
             body: JSON.stringify({ email: credentials.email, password: credentials.password })
         });
         const json = await response.json()
-        console.log(json)
+        // console.log(json)
         if (json.success) {
             // Save the auth token and redirect
             localStorage.setItem('token', json.authtoken);
