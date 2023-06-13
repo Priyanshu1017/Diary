@@ -10,7 +10,10 @@ export default function Notes(props) {
   const { notes, getNotes, editNote } = context;
   const [note, setNote] = React.useState({ id: "", etitle: "", edescription: "", etag: "" })
 
-  useEffect(() => {
+
+
+  console.log("useeffect of notes")
+  try {
     if (localStorage.getItem('token')) {
 
       getNotes()
@@ -18,8 +21,9 @@ export default function Notes(props) {
     else {
       navigate('/login')
     }
-
-  })
+  } catch (e) {
+    console.log(e)
+  }
 
 
   const ref = useRef(null)

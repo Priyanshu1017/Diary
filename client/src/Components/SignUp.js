@@ -8,7 +8,7 @@ export default function SignUp(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch("http://localhost:5000/api/auth/createuser", {
+        const response = await fetch("/api/auth/createuser", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -51,19 +51,19 @@ export default function SignUp(props) {
             < h3>Sign Up to use Diary</h3>
             <form className='Form' onSubmit={handleSubmit}>
                 <div className="mb-3  row">
-                    <label className="col-sm-3 col-form-label">Name</label>
+                    <label htmlFor='name' className="col-sm-3 col-form-label">Name</label>
                     <div className="col-sm-7">
                         <input type="text" className="form-control" value={credentials.name} id="name" name="name" onChange={onChange} />
                     </div>
                 </div>
                 <div className="mb-3 row">
-                    <label htmlFor="staticEmail" className="col-sm-3 col-form-label">Email</label>
+                    <label htmlFor="email" className="col-sm-3 col-form-label">Email</label>
                     <div className="col-sm-7">
                         <input type="email" className="form-control" value={credentials.email} onChange={onChange} name="email" id="email" placeholder='ex@gmail.com' />
                     </div>
                 </div>
                 <div className="mb-3 row">
-                    <label htmlFor="inputPassword" className="col-sm-3 col-form-label">Password</label>
+                    <label htmlFor="password" className="col-sm-3 col-form-label">Password</label>
                     <div className="col-sm-7">
                         <input type="password" className="form-control" value={credentials.password} onChange={onChange} name="password" id="password" />
 
@@ -71,7 +71,7 @@ export default function SignUp(props) {
                     </div>
                 </div>
                 <div className="mb-3 row">
-                    <label htmlFor="inputPassword" className="col-sm-3 col-form-label">Confirm Password</label>
+                    <label htmlFor="cpassword" className="col-sm-3 col-form-label">Confirm Password</label>
                     <div className="col-sm-7">
                         <input type="text" className="form-control" value={credentials.cpassword} onChange={onChange} name="cpassword" id="cpassword" />
                     </div>

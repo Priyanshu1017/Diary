@@ -8,6 +8,7 @@ const {body,validationResult}=require('express-validator');
 router.get('/fetchallnotes',fetchuser,async(req,res)=>{
     try{
         const notes=await Notes.find({user:req.user.id});
+        // console.log(notes);
         res.json(notes);
     }catch(error){
         console.error(error.message);
@@ -24,13 +25,20 @@ router.post('/addnote',fetchuser,[
 ], async(req,res)=>{
     const {title,description,tag}=req.body;
 
-    const errors = validationResult(req);
     try{
-        const note=new Notes({
-            title,description,tag,user:req.user.id
-        })
-        const savedNote=await note.save();
-        res.json(savedNote);
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+        try{
+            const note=new Notes({
+                title,description,tag,user:req.user.id
+            })
+            await note.save();
+            res.statusCode(200);
+        }catch(error){
+            console.error(error.message);
+            res.status(500).send("Some error occured");
+        }
+    }
     }catch(error){
         console.error(error.message);
         res.status(500).send("Some error occured");
@@ -69,8 +77,8 @@ router.delete('/deletenote/:id',fetchuser,async(req,res)=>{
         if(note.user.toString()!==req.user.id){
             return res.status(401).send("Not allowed");
         }
-        note=await Notes.findByIdAndDelete(req.params.id);
-        res.json({"Success":"Note has been deleted",note:note});
+        await Notes.findByIdAndDelete(req.params.id);
+        res.statusCode(200);
     }catch(error){
         console.error(error.message);
         res.status(500).send("Some error occured");

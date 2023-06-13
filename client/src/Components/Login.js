@@ -7,7 +7,7 @@ export default function Login(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch("http://localhost:5000/api/auth/login", {
+        const response = await fetch("/api/auth/login", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -15,6 +15,7 @@ export default function Login(props) {
             body: JSON.stringify({ email: credentials.email, password: credentials.password })
         });
         const json = await response.json()
+        console.log(json)
         if (json.success) {
             // Save the auth token and redirect
             localStorage.setItem('token', json.authtoken);
@@ -56,13 +57,13 @@ export default function Login(props) {
             < h3 >Login to use Diary</h3>
             <form className='Form' onSubmit={handleSubmit}>
                 <div className="mb-3  row">
-                    <label htmlFor="staticEmail" className="col-sm-4 col-form-label">Email</label>
+                    <label htmlFor="email" className="col-sm-4 col-form-label">Email</label>
                     <div className=".input">
                         <input type="email" className="form-control" value={credentials.email} onChange={onChange} id="email" name="email" aria-describedby="emailHelp" placeholder='ex@gmail.com' />
                     </div>
                 </div>
                 <div className="mb-3 row">
-                    <label htmlFor="inputPassword" className="col-sm-4 col-form-label">Password</label>
+                    <label htmlFor="password" className="col-sm-4 col-form-label">Password</label>
                     <div className=".input">
                         <input type="password" className="form-control" value={credentials.password} onChange={onChange} name="password" id="password" />
                         <span id="eye-icon" className="fas fa-eye-slash" onClick={togglePasswordVisibility}></span>
