@@ -80,7 +80,7 @@ export default function About(props) {
       </div>
     </div>
 
-    <div className="Formm row my-3" style={{ background: "url(https://source.unsplash.com/random/?space)", backgroundPositionX: 'center' }} >
+    <div className="Formm row my-3" style={{ background: "url(../image/g5.jpg)", backgroundPositionX: 'center' }} >
       <h3 style={{animation:"none",display:"flex",justifyContent:"center"}}>Your Note</h3>
       
 

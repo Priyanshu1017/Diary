@@ -1,7 +1,8 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef,useState } from 'react'
 import noteContext from '../Context/notes/noteContext';
 import Noteitem from './Noteitem';
 import AddNote from './AddNote';
+import Bg from '../Context/bgimg/bgimage'
 import { useNavigate } from 'react-router-dom';
 import '../Designs/star.css'
 export default function Notes(props) {
@@ -10,7 +11,14 @@ export default function Notes(props) {
   const { notes, getNotes, editNote } = context;
   const [note, setNote] = React.useState({ id: "", etitle: "", edescription: "", etag: "" })
 
-
+const [bgImage, setBgImage] = useState("");
+    useEffect(() => {
+        async function fetchBg() {
+            const url = await Bg();
+            setBgImage(url);
+        }
+        fetchBg();
+    }, []);
 
   useEffect(() => {
   try {
@@ -87,7 +95,7 @@ export default function Notes(props) {
       </div>
     </div>
 
-    <div className="Formm row my-3" style={{ background: "url(https://source.unsplash.com/random/900*700/?space)", backgroundPositionX: 'center' }} >
+    <div className="Formm row my-3" style={{ background: `url(../image/g1.jpg)`, backgroundPositionX: 'center' }} >
       
       <h3 style={{animation:"none",display:"flex",justifyContent:"center",marginBottom:'14vh'}}>Your Note</h3>
       

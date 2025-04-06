@@ -1,9 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate ,Link} from 'react-router-dom'
 import '../Designs/Diary.css'
+import Bg from '../Context/bgimg/bgimage'
 export default function Login(props) {
     const [credentials, setCredentials] = useState({ email: "", password: "" })
     const navigate = useNavigate();
+
+
+    const [bgImage, setBgImage] = useState("");
+        useEffect(() => {
+            async function fetchBg() {
+                const url = await Bg();
+                setBgImage(url);
+            }
+            fetchBg();
+        }, []);
+        
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -15,7 +27,6 @@ export default function Login(props) {
             body: JSON.stringify({ email: credentials.email, password: credentials.password })
         });
         const json = await response.json()
-        // console.log(json)
         if (json.success) {
             // Save the auth token and redirect
             localStorage.setItem('token', json.authtoken);
@@ -53,7 +64,7 @@ export default function Login(props) {
     }
 
     return (
-        <div className='formcontainer' style={{ background: "url(https://source.unsplash.com/random/?dawn)", backgroundPositionX: 'center' }} >
+        <div className='formcontainer' style={{ background: `url(../image/g2.jpg)`, backgroundPositionX: 'center' }} >
             < h3 >Login to use Diary</h3>
             <form className='Form' onSubmit={handleSubmit}>
                 <div className="mb-3  row">

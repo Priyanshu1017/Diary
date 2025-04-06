@@ -1,11 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../Designs/star.css'
-export default function SignUp(props) {
+import Bg from '../Context/bgimg/bgimage'
+export default function SignUp(props ) {
 
     const [credentials, setCredentials] = useState({ name: "", email: "", password: "", cpassword: "" })
     const navigate = useNavigate();
 
+    const [bgImage, setBgImage] = useState("");
+    useEffect(() => {
+        async function fetchBg() {
+            const url = await Bg();
+            setBgImage(url);
+        }
+        fetchBg();
+    }, []);
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await fetch("/api/auth/createuser", {
@@ -40,15 +50,16 @@ export default function SignUp(props) {
 
     }
 
-
     const onChange = (e) => {
         e.preventDefault();
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
 
     return (
-        <div className="signupcontainer my-3" style={{ background: "url(https://source.unsplash.com/random/?night)" }} >
-            < h3>Sign Up to use Diary</h3>
+        <div className="signupcontainer my-3" style={{ background: `url(../image/g3.jpg)`,  backgroundSize: "cover", }} >
+        
+            < h3>Sign Up to use Diary </h3>
+           
             <form className='Form' onSubmit={handleSubmit}>
                 <div className="mb-3  row">
                     <label htmlFor='name' className="col-sm-3 col-form-label">Name</label>

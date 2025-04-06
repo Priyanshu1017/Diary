@@ -5,9 +5,6 @@ import { useState } from "react";
 const NoteState = (props) => {
     // const host = "http://localhost:5000"
     const[notes,setNotes]=useState([])
-    // console.log("Hello")
-
-    // Get all Notes
 
     const getNotes = async () => {
         // console.log("You")
@@ -51,7 +48,6 @@ const NoteState = (props) => {
         return
     }
 
-
     // Delete a Note
     const deleteNote = async (id) => {
         // API Call
@@ -72,7 +68,6 @@ const NoteState = (props) => {
 
         return
     }
-
 
     // Edit a Note
     const editNote = async (id, title, description, tag) => {

@@ -1,13 +1,22 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState,useEffect } from 'react'
 import noteContext from '../Context/notes/noteContext';
 import '../Designs/star.css'
-
+import Bg from '../Context/bgimg/bgimage'
 export default function AddNote(props) {
   const context = useContext(noteContext)
   const { addNote } = context;
   const [note, setNote] = useState({ title: "", description: "", tag: "" })
+  const [bgImage, setBgImage] = useState("");
+          useEffect(() => {
+              async function fetchBg() {
+                  const url = await Bg();
+                  setBgImage(url);
+              }
+              fetchBg();
+          }, []);
+  console.log(bgImage)
 
-  const onChange = (e) => {
+    const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value })
   }
   const handleClick = (e) => {
@@ -21,7 +30,7 @@ export default function AddNote(props) {
 
   return (
 
-    <div className='formcontainer my-3' style={{ background: "url(https://source.unsplash.com/random/?nature`)", backgroundPositionX: 'center' }}>
+    <div className='formcontainer my-3' style={{ background: `url(../image/stars.jpg)`, backgroundPositionX: 'center' }}>
       
         <h3>Add a Note</h3>
         <form className='Form'>
